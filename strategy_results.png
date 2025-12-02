@@ -1,0 +1,11 @@
+plt.figure(figsize=(12, 6))
+plt.plot(df.index, df["Market_Cum"], label="Market Return")
+plt.plot(df.index, df["Strategy_Cum"], label="Strategy Return")
+plt.title("Market vs Strategy Performance")
+plt.xlabel("Date")
+plt.ylabel("Cumulative Return")
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.savefig("strategy_results.png")  # <-- saves PNG file
+plt.show()
