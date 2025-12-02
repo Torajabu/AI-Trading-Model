@@ -8,9 +8,8 @@ This project builds a complete, end-to-end AI trading system using Yahoo Finance
 
 ## Data Flow Diagram & System Architecture
 
-*(Add a diagram later if you design one)*
 
-[![DFD](path/to/architecture_diagram.png)](path/to/architecture_diagram.png)
+[![DFD](https://github.com/Torajabu/AI-Trading-Model/blob/main/architecture.svg)]
 
 ---
 
@@ -287,5 +286,3 @@ This project demonstrates:
 * Technical Analysis literature
 
 ---
-
-Just tell m
