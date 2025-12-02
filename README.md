@@ -39,8 +39,6 @@ This project builds a complete, end-to-end AI trading system using Yahoo Finance
 
 ## Results
 
-*(Insert screenshot later: strategy_results.png)*
-
 ![Result GIF](path/to/strategy_results.png)
 
 The output visualization compares market returns vs the model-driven strategy. When the strategy curve rises above the market curve, model predictions outperform simple buy-and-hold.
