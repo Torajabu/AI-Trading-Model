@@ -1,0 +1,228 @@
+<svg width="1200" height="650" viewBox="0 0 1200 650" xmlns="http://www.w3.org/2000/svg">
+
+  <style>
+    .title {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 22px;
+      font-weight: 600;
+      fill: #222222;
+    }
+    .subtitle {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+      fill: #444444;
+    }
+    .box {
+      rx: 10;
+      ry: 10;
+      stroke-width: 1.5;
+      stroke: #333333;
+    }
+    .box-text-title {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      fill: #111111;
+    }
+    .box-text-body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      fill: #222222;
+    }
+    .section-label {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      fill: #666666;
+    }
+    .badge {
+      rx: 6;
+      ry: 6;
+    }
+    .badge-text {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 11px;
+      fill: #111111;
+    }
+    .arrow {
+      stroke: #555555;
+      stroke-width: 1.6;
+      fill: none;
+    }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#555555" />
+    </marker>
+  </defs>
+
+  <!-- Title -->
+  <text x="50" y="45" class="title">
+    AI Trading Model – Random Forest Trend Predictor Data Flow Diagram & System Architecture
+  </text>
+  <text x="50" y="68" class="subtitle">
+    End-to-end pipeline: Yahoo Finance data → feature engineering → Random Forest model → trading strategy backtest → performance visualization
+  </text>
+
+  <!-- SECTION LABELS -->
+  <text x="70" y="115" class="section-label">Inputs</text>
+  <text x="330" y="115" class="section-label">Data & Features</text>
+  <text x="610" y="115" class="section-label">Model & Evaluation</text>
+  <text x="880" y="115" class="section-label">Backtest & Outputs</text>
+
+  <!-- INPUTS COLUMN -->
+
+  <!-- User Config -->
+  <rect x="50" y="135" width="200" height="90"
+        class="box"
+        fill="#E3F2FD" />
+  <text x="60" y="158" class="box-text-title">1. User Config</text>
+  <text x="60" y="180" class="box-text-body">• Symbol (e.g. "AAPL")</text>
+  <text x="60" y="198" class="box-text-body">• Period (e.g. "2y")</text>
+  <text x="60" y="216" class="box-text-body">• Main script: main()</text>
+
+  <!-- Yahoo Finance -->
+  <rect x="50" y="250" width="200" height="100"
+        class="box"
+        fill="#E8F5E9" />
+  <text x="60" y="273" class="box-text-title">2. Yahoo Finance Source</text>
+  <text x="60" y="295" class="box-text-body">• OHLCV time series</text>
+  <text x="60" y="313" class="box-text-body">• Download via yfinance</text>
+  <text x="60" y="331" class="box-text-body">• Validated non-empty</text>
+
+  <!-- ARROWS FROM INPUTS TO DATA DOWNLOAD -->
+  <line x1="250" y1="180" x2="320" y2="180" class="arrow" marker-end="url(#arrowhead)" />
+  <line x1="250" y1="300" x2="320" y2="220" class="arrow" marker-end="url(#arrowhead)" />
+
+  <!-- DATA & FEATURE ENGINEERING COLUMN -->
+
+  <!-- Data Download -->
+  <rect x="320" y="150" width="230" height="80"
+        class="box"
+        fill="#FFF3E0" />
+  <text x="330" y="173" class="box-text-title">3. Data Download</text>
+  <text x="330" y="195" class="box-text-body">Function: download_price_data()</text>
+  <text x="330" y="213" class="box-text-body">• Uses yf.download(symbol, period)</text>
+
+  <!-- Feature Engineering -->
+  <rect x="320" y="260" width="230" height="140"
+        class="box"
+        fill="#F3E5F5" />
+  <text x="330" y="283" class="box-text-title">4. Feature Engineering</text>
+  <text x="330" y="305" class="box-text-body">Function: prepare_features()</text>
+  <text x="330" y="323" class="box-text-body">• Return = Close.pct_change()</text>
+  <text x="330" y="341" class="box-text-body">• Direction (next-day Up / Down)</text>
+  <text x="330" y="359" class="box-text-body">• SMA10, SMA50, EMA20</text>
+  <text x="330" y="377" class="box-text-body">• RSI14 (Wilder's method)</text>
+
+  <!-- ARROWS BETWEEN DATA DOWNLOAD AND FEATURE ENGINEERING -->
+  <line x1="435" y1="230" x2="435" y2="260" class="arrow" marker-end="url(#arrowhead)" />
+
+  <!-- MODEL & EVALUATION COLUMN -->
+
+  <!-- Train/Test Split + Random Forest -->
+  <rect x="600" y="150" width="240" height="160"
+        class="box"
+        fill="#E1F5FE" />
+  <text x="610" y="173" class="box-text-title">5. Train / Test Split & Model</text>
+  <text x="610" y="195" class="box-text-body">Function: train_model(df)</text>
+  <text x="610" y="213" class="box-text-body">• Feature cols: OHLCV + SMA/EMA/RSI</text>
+  <text x="610" y="231" class="box-text-body">• Time-series split (no shuffle)</text>
+  <text x="610" y="249" class="box-text-body">• RandomForestClassifier (200 trees)</text>
+  <text x="610" y="267" class="box-text-body">• Accuracy + classification_report</text>
+
+  <!-- Arrow from Feature Engineering to Model -->
+  <line x1="550" y1="330" x2="600" y2="230" class="arrow" marker-end="url(#arrowhead)" />
+
+  <!-- Predictions for Strategy -->
+  <rect x="600" y="340" width="240" height="80"
+        class="box"
+        fill="#EDE7F6" />
+  <text x="610" y="363" class="box-text-title">6. Model Predictions</text>
+  <text x="610" y="385" class="box-text-body">• df["Pred_Dir"] = model.predict(X_all)</text>
+  <text x="610" y="403" class="box-text-body">• Used for trading positions</text>
+
+  <!-- Arrow from Model box down to Predictions -->
+  <line x1="720" y1="310" x2="720" y2="340" class="arrow" marker-end="url(#arrowhead)" />
+
+  <!-- BACKTEST & OUTPUTS COLUMN -->
+
+  <!-- Strategy Backtest -->
+  <rect x="880" y="150" width="260" height="150"
+        class="box"
+        fill="#E8F5E9" />
+  <text x="890" y="173" class="box-text-title">7. Strategy Backtest</text>
+  <text x="890" y="195" class="box-text-body">Function: backtest_strategy(df, model)</text>
+  <text x="890" y="213" class="box-text-body">• Position[t] = Pred_Dir[t-1]</text>
+  <text x="890" y="231" class="box-text-body">• Strategy_Return = Position * Return</text>
+  <text x="890" y="249" class="box-text-body">• Market_Cum, Strategy_Cum (equity curves)</text>
+
+  <!-- Arrow from Predictions to Strategy Backtest -->
+  <line x1="840" y1="380" x2="880" y2="225" class="arrow" marker-end="url(#arrowhead)" />
+
+  <!-- Visualization & Outputs -->
+  <rect x="880" y="330" width="260" height="150"
+        class="box"
+        fill="#FFF8E1" />
+  <text x="890" y="353" class="box-text-title">8. Visualization & Outputs</text>
+  <text x="890" y="375" class="box-text-body">Function: plot_performance(df_bt, symbol)</text>
+  <text x="890" y="393" class="box-text-body">• Matplotlib chart: Market vs Strategy</text>
+  <text x="890" y="411" class="box-text-body">• Console: accuracy + report</text>
+  <text x="890" y="429" class="box-text-body">• Final df: Close, Return, Pred_Dir,</text>
+  <text x="890" y="447" class="box-text-body">  Position, Market_Cum, Strategy_Cum</text>
+
+  <!-- Arrow from Strategy Backtest to Visualization -->
+  <line x1="1010" y1="300" x2="1010" y2="330" class="arrow" marker-end="url(#arrowhead)" />
+
+  <!-- TECHNOLOGY STACK BOX (BOTTOM LEFT) -->
+  <text x="70" y="440" class="section-label">Technology Stack</text>
+  <rect x="50" y="455" width="370" height="140"
+        class="box"
+        fill="#F5F5F5" />
+  <rect x="70" y="480" width="90" height="26" class="badge" fill="#BBDEFB" />
+  <text x="80" y="497" class="badge-text">Python 3.x</text>
+
+  <rect x="170" y="480" width="90" height="26" class="badge" fill="#C8E6C9" />
+  <text x="180" y="497" class="badge-text">yfinance</text>
+
+  <rect x="270" y="480" width="90" height="26" class="badge" fill="#FFE0B2" />
+  <text x="280" y="497" class="badge-text">pandas</text>
+
+  <rect x="70" y="520" width="90" height="26" class="badge" fill="#E1BEE7" />
+  <text x="80" y="537" class="badge-text">numpy</text>
+
+  <rect x="170" y="520" width="120" height="26" class="badge" fill="#FFECB3" />
+  <text x="180" y="537" class="badge-text">matplotlib</text>
+
+  <rect x="300" y="520" width="110" height="26" class="badge" fill="#DCEDC8" />
+  <text x="310" y="537" class="badge-text">scikit-learn</text>
+
+  <text x="70" y="560" class="box-text-body">
+    Core model: RandomForestClassifier (n_estimators=200, random_state=42, n_jobs=-1)
+  </text>
+
+  <!-- PERFORMANCE METRICS BOX (BOTTOM RIGHT) -->
+  <text x="610" y="440" class="section-label">Performance Metrics & Evaluation</text>
+  <rect x="590" y="455" width="550" height="140"
+        class="box"
+        fill="#FAFAFA" />
+  <text x="600" y="480" class="box-text-body">
+    • Classification metrics: accuracy_score(y_test, y_pred_test)
+  </text>
+  <text x="600" y="498" class="box-text-body">
+    • sklearn.metrics.classification_report: precision, recall, F1-score, support
+  </text>
+  <text x="600" y="516" class="box-text-body">
+    • Strategy vs Market: visual comparison of cumulative returns
+  </text>
+  <text x="600" y="534" class="box-text-body">
+    • Qualitative analysis: if Strategy_Cum &gt; Market_Cum → model outperforms buy-and-hold
+  </text>
+  <text x="600" y="552" class="box-text-body">
+    • Used as a research / educational baseline for ML-based trading strategies
+  </text>
+
+</svg>
