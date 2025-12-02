@@ -54,8 +54,6 @@ The output visualization compares market returns vs the model-driven strategy. W
 * matplotlib
 * scikit-learn
 
-*(Create a requirements.txt if desired.)*
-
 ---
 
 ## Installation
