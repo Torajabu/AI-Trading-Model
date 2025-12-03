@@ -2,7 +2,7 @@
 
 ## Machine-Learning model that forecasts next-day price direction and simulates a trading strategy
 
-This project builds a complete, end-to-end AI trading system using Yahoo Finance market data, technical indicators, a Random Forest classifier, and a simple rule-based strategy. It downloads OHLCV data automatically, engineers predictive features, trains a model to forecast next-day direction, and evaluates a long-only strategy against the market. The project is fully reproducible, self-contained, and ready for portfolios or GitHub.
+This project builds a complete, end-to-end AI trading system using Yahoo Finance market data, technical indicators, a Random Forest classifier, and a simple rule-based strategy. It downloads OHLCV data automatically, engineers predictive features, trains a model to forecast next-day direction, and evaluates a long-only strategy against the market.
 
 ---
 
